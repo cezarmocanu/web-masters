@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  body: string;
+}
+
+const { title, body } = Astro.props;
+const id = `InstructionsCard${Math.round(Math.random() * Date.now())}`;
+---
+
+<div class="container" id={id}>
+  <h3>{title}</h3>
+  <div class="content">
+    {body}
+  </div>
+</div>
+
+<style>
+  .container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 400px;
+    gap: 16px;
+  }
+
+  @media screen and (width <= 500px) {
+    .container {
+      min-width: 300px;
+    }
+  }
+
+  .content {
+    margin-bottom: 2rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark)),
+      rgba(var(--accent-dark-2))
+    );
+    padding: 1rem;
+    border-radius: 8px;
+  }
+</style>
+
+<script define:vars={{ id }}>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("flip-in-hor-bottom");
+    }
+  });
+});
+
+const el = document.querySelector(`#${id}`);
+if (el) {
+  observer.observe(el);
+}
+</script>

@@ -1,0 +1,167 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Card from "../components/atoms/Card.astro";
+import Logo from "../components/atoms/Logo.astro";
+import IntroSection from "../components/molecules/IntroSection.astro";
+import InstructionsCard from "../components/atoms/InstructionsCard.astro";
+import Footer from "../components/molecules/Footer.astro";
+import Navbar from "../components/molecules/Navbar.astro";
+
+const instructionCards = [
+  {
+    title: "🥷 Ce este Web Masters?",
+    body: "Web Masters este un proiect de educație, ce are ca scop principal, creearea de cursuri gratuite de programare, pornind de la concepte simple până la proiecte și tehnologii complexe precum cele ce se întalnesc în cursurile profesionale si universități.",
+  },
+  {
+    title: "🧑🏼‍🏫 Cine predă cursul?",
+    body: "Numele meu este Cezar, lucrez în domeniul IT de peste 6 ani, iar de mai bine de 2 ani predau în diverse cursuri de certificare IT.",
+  },
+];
+---
+
+<Layout>
+  <Navbar/>
+  <main>
+    <IntroSection />
+    <div class="instructions-container">
+      {
+        instructionCards.map((card) => (
+          <InstructionsCard title={card.title} body={card.body} />
+        ))
+      }
+    </div>
+    
+
+    <h3>💁‍♂️ Cine poate participa?</h3>
+    <div class="instructions">
+      <ul>
+        <li>
+          Adulti, copii, studenti, elevi, toate aceste categorii pot invăța cate
+          ceva din acest curs
+        </li>
+        <li>
+          Persoanelor care doresc să vada ce se afla în spatele programelor și
+          tehnologiei pe care o folosim zi de zi
+        </li>
+        <li>Celor care doresc să își creeze o aplicație web</li>
+        <li>Celor care doresc să urmeze o carieră în domeniul IT</li>
+      </ul>
+    </div>
+
+    <h3>💻 Ce am nevoie pentru acest curs?</h3>
+    <div class="instructions">
+      <ul>
+        <li>
+          Disponibilitatea să participi la cel putin una din cele doua sesiuni
+          săptamânale
+        </li>
+        <li>Un laptop sau un PC</li>
+        <li>Multă răbdare, și motivație să exersezi informatiile noi</li>
+      </ul>
+    </div>
+
+    <h3>⭐ Ce include acest curs?</h3>
+    <ul role="list" class="link-card-grid">
+      <Card
+        title="Cursuri Începatori"
+        body="Ești nou in lumea IT? Află bazele programării, algoritmilor și uneltelor IT urmând cursul de începători."
+      />
+      <Card
+        title="Complet Gratuit"
+        body="Scopul Web Masters este cel de a creea materiale GRATUITE de calitate în domeniul IT. Tot ce ai nevoie este un laptop, implicare și curiozitate."
+      />
+      <Card
+        title="Coding Challange"
+        body="Dacă ești curios să vezi proiecte mai complexe, precum și curiozități din lumea programării, Coding Challange-ul este ocazia potrivita."
+      />
+      <Card
+        title="Live dar si înregistrat"
+        body="În fiecare săptămână vom avea doua sesiuni live, ce vor fi disponibile pe canalul de YouTube Web Masters"
+      />
+    </ul>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    padding: 2rem 8rem;
+    color: white;
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  @media screen and (width <= 1000px) {
+    main {
+      max-width: calc(100% - 2rem);
+      padding: 1rem 2rem;
+    }
+  }
+
+  @media screen and (width <= 620px) {
+    main {
+      max-width: unset;
+      padding: 1rem 1rem;
+    }
+  }
+
+  .instructions-container {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0 32px;
+    flex-wrap: wrap;
+  }
+
+  .instructions {
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    border: 1px solid rgba(var(--accent-light), 25%);
+    background: linear-gradient(
+      rgba(var(--accent-dark)),
+      rgba(var(--accent-dark-2))
+    );
+    padding: 2rem;
+    border-radius: 8px;
+  }
+
+  code {
+    font-size: 0.8em;
+    font-weight: bold;
+    background: rgba(var(--accent-light), 12%);
+    color: rgb(var(--accent-light));
+    border-radius: 4px;
+    padding: 0.3em 0.4em;
+  }
+
+  .link-card-grid {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 2rem;
+    padding: 0;
+  }
+</style>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    // Loop over the entries
+    entries.forEach((entry) => {
+      // If the element is visible
+      if (entry.isIntersecting) {
+        // Add the animation class
+        entry.target.classList.add("flip-in-hor-bottom");
+      }
+    });
+  });
+
+  const instructionElements = document.querySelectorAll(".instructions");
+  if (instructionElements) {
+    instructionElements.forEach((el) => observer.observe(el));
+  }
+
+  const cardContainer = document.querySelector(".link-card-grid");
+
+  if (cardContainer) {
+    observer.observe(cardContainer);
+  }
+</script>

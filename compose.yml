@@ -1,0 +1,20 @@
+services:
+  db:
+    container_name: wm-db
+    env_file:
+      - .env
+    image: postgres
+    ports:
+      - ${DB_EXP_PORT}:${DB_PORT}
+    volumes:
+      - ./db:/var/lib/postgresql/data
+  api:
+    container_name: wm-api
+    env_file:
+      - .env
+    image: cezarmocanu/web-masters-api:0.1
+    ports:
+      - ${API_EXP_PORT}:${API_PORT}
+    depends_on:
+      - db
+  

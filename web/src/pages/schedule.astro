@@ -1,0 +1,41 @@
+---
+import JoinForm from "../components/atoms/JoinForm.astro";
+import Logo from "../components/atoms/Logo.astro";
+import ScheduleTimer from "../components/atoms/ScheduleTimer/ScheduleTimer";
+import Footer from "../components/molecules/Footer.astro";
+import Navbar from "../components/molecules/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    console.log(data);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.stack);
+    }
+  }
+  return Astro.redirect("/");
+}
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <Logo size={128} />
+    <h1>În curând...</h1>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    color: white;
+    padding: 2rem;
+    min-height: calc(100vh - 24rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+</style>

@@ -1,0 +1,66 @@
+---
+import Logo from "../atoms/Logo.astro";
+
+const title = "<Web Masters/>";
+---
+
+<nav>
+  <a class="title-container" href="/">
+    <Logo />
+    <h2 class="title-text text-gradient">{title}</h2>
+  </a>
+  <div class="items-container">
+    <a href="schedule">Program</a>
+    <a class="join-link" href="join">Înscrie-te</a>
+  </div>
+</nav>
+
+<style>
+  nav {
+    position: sticky;
+    top: 0;
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 16px;
+    z-index: 100;
+    background: linear-gradient(
+      rgba(var(--accent-dark)),
+      rgba(var(--accent-dark-2))
+    );
+  }
+
+  .title-container {
+    display: flex;
+    gap: 8px;
+    justify-content: start;
+    align-items: center;
+    text-decoration: none;
+  }
+
+  .items-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .join-link {
+    color: white;
+    background-color: rgba(var(--accent-dark));
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(var(--accent));
+  }
+
+  .join-link:hover {
+    background-color: rgba(var(--accent-dark-2));
+  }
+
+  @media screen and (width <= 620px) {
+    .title-text {
+      display: none;
+    }
+  }
+</style>

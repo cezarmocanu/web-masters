@@ -1,0 +1,80 @@
+---
+import JoinForm from "../components/atoms/JoinForm.astro";
+import ScheduleTimer from "../components/atoms/ScheduleTimer/ScheduleTimer";
+import Footer from "../components/molecules/Footer.astro";
+import Navbar from "../components/molecules/Navbar.astro";
+import Layout from "../layouts/Layout.astro";
+
+if (Astro.request.method === "POST") {
+  try {
+    const data = await Astro.request.formData();
+    console.log(data);
+  } catch (error) {
+    if (error instanceof Error) {
+      console.error(error.stack);
+    }
+  }
+  return Astro.redirect("/");
+}
+---
+
+<Layout>
+  <Navbar />
+  <main>
+    <div class="content-container">
+      <ScheduleTimer client:load />
+      <hr />
+      <div class="form-container">
+        <h3>
+          Înscrie-te cu adresa de e-mail în programul &lt;Web Masters/&gt;
+        </h3>
+        <JoinForm />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style>
+  main {
+    color: white;
+    padding: 2rem;
+    min-height: calc(100vh - 24rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .content-container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  .form-container h1 {
+    font-size: 2rem;
+    font-weight: normal;
+  }
+
+  .form-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  @media screen and (width <= 620px) {
+    .content-container {
+      width: 300px;
+      text-align: center;
+    }
+  }
+</style>

@@ -1,0 +1,10 @@
+services:
+  db:
+    container_name: wm-db-dev
+    image: postgres
+    env_file:
+      - .env
+    ports:
+      - ${EXP_PORT}:${PORT}
+    volumes:
+      - ./db:/db-volume
