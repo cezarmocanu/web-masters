@@ -20,7 +20,7 @@ services:
       - |
         DB_STRING=db:postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT}/${POSTGRES_DB}
         echo Migrator started...
-        sqitch verify $${DB_STRING}
+        sqitch deploy $${DB_STRING} && sqitch verify $${DB_STRING}
     depends_on:
       - db
   api:
@@ -31,5 +31,5 @@ services:
     ports:
       - ${API_EXP_PORT}:${API_PORT}
     depends_on:
-      - migrator
+      - db
   
