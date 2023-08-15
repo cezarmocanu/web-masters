@@ -1,3 +1,5 @@
+version: '3'
+
 services:
   db:
     container_name: wm-db
@@ -8,13 +10,26 @@ services:
       - ${DB_EXP_PORT}:${DB_PORT}
     volumes:
       - ./db-volume:/var/lib/postgresql/data
+  migrator:
+    container_name: wm-migrator
+    image: cezarmocanu/web-masters-migrator:${VERSION}
+    entrypoint: ["/bin/sh","-c"]
+    env_file:
+      - .env
+    command:
+      - |
+        DB_STRING=db:postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT}/${POSTGRES_DB}
+        echo Migrator started...
+        sqitch verify $${DB_STRING}
+    depends_on:
+      - db
   api:
     container_name: wm-api
     env_file:
       - .env
-    image: cezarmocanu/web-masters-api:0.1
+    image: cezarmocanu/web-masters-api:${VERSION}
     ports:
       - ${API_EXP_PORT}:${API_PORT}
     depends_on:
-      - db
+      - migrator
   
