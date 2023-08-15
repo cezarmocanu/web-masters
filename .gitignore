@@ -3,6 +3,7 @@
 */**/dist
 */**/client
 */**/.env
+.env
 
 db-volume
 build.sh
