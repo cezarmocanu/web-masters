@@ -1,5 +1,6 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { UserService } from './user.service';
+import { User } from 'src/entities/user.entity';
 
 @Controller('/api/users')
 export class UserController {
@@ -10,6 +11,16 @@ export class UserController {
     try {
       await this.userService.createUser(dto.email);
       return `User ${dto.email} created`;
+    } catch (e) {
+      return e.message;
+    }
+  }
+
+  @Get()
+  async usersGet(): Promise<User[]> {
+    try {
+      // return await this.userService.findAll();
+      return [];
     } catch (e) {
       return e.message;
     }

@@ -10,4 +10,7 @@ export class User {
 
   @Column({ nullable: false, length: 250 })
   email: string;
+
+  @Column({ name: 'created_date', nullable: false })
+  createdDate: string;
 }
