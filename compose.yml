@@ -23,6 +23,19 @@ services:
         sqitch deploy $${DB_STRING} && sqitch verify $${DB_STRING}
     depends_on:
       - db
+  migrator-revert:
+    container_name: wm-migrator
+    image: cezarmocanu/web-masters-migrator:${VERSION}
+    entrypoint: ["/bin/sh","-c"]
+    env_file:
+      - .env
+    command:
+      - |
+        DB_STRING=db:postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:${DB_PORT}/${POSTGRES_DB}
+        echo Migrator started...
+        sqitch revert $${DB_STRING} HEAD^
+    depends_on:
+      - db
   api:
     container_name: wm-api
     env_file:
