@@ -4,7 +4,7 @@
 */**/client
 */**/.env
 
-db
+db-volume
 build.sh
 
 ./compose.db.yml

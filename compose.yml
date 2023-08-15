@@ -7,7 +7,7 @@ services:
     ports:
       - ${DB_EXP_PORT}:${DB_PORT}
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./db-volume:/var/lib/postgresql/data
   api:
     container_name: wm-api
     env_file:
