@@ -1,13 +1,13 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity({
+  name: 'users',
+  schema: 'webmasters',
+})
 export class User {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column()
+  @Column({ nullable: false, length: 250 })
   email: string;
-
-  @Column({ default: true })
-  isActive: boolean;
 }

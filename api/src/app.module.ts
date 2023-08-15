@@ -22,7 +22,7 @@ import { join } from 'path';
         password: configService.get<string>('DATABASE_PASS'),
         database: configService.get<string>('DATABASE_NAME'),
         entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: configService.get<boolean>('DATABASE_SYNC'),
+        synchronize: configService.get<string>('DATABASE_SYNC') === 'true',
       }),
       inject: [ConfigService],
     }),
