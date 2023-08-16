@@ -8,14 +8,15 @@ const nextSession = {
 };
 
 const ScheduleTimer = () => {
-  const [remainingTime, setRemainingTime] =
-    useState<ReturnType<typeof getTimeLeft>>();
+  const [remainingTime, setRemainingTime] = useState<
+    ReturnType<typeof getTimeLeft>
+  >(getTimeLeft(nextSession.dateTime));
   useEffect(() => {
     const interval = setInterval(
       () => setRemainingTime(getTimeLeft(nextSession.dateTime)),
       1000
     );
-    console.log("timer");
+
     return () => clearInterval(interval);
   }, []);
 
