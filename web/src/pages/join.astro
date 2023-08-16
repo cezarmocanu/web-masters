@@ -1,5 +1,5 @@
 ---
-import JoinForm from "../components/atoms/JoinForm.astro";
+import JoinForm from "../components/atoms/JoinForm/JoinForm";
 import ScheduleTimer from "../components/atoms/ScheduleTimer/ScheduleTimer";
 import Footer from "../components/molecules/Footer.astro";
 import Navbar from "../components/molecules/Navbar.astro";
@@ -23,12 +23,13 @@ if (Astro.request.method === "POST") {
   <main>
     <div class="content-container">
       <ScheduleTimer client:load />
+      
       <hr />
       <div class="form-container">
         <h3>
           Înscrie-te cu adresa de e-mail în programul &lt;Web Masters/&gt;
         </h3>
-        <JoinForm />
+        <JoinForm client:idle />
       </div>
     </div>
   </main>

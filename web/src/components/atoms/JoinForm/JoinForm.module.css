@@ -1,0 +1,55 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    width: 100%;
+}
+
+label {
+    width: 100%;
+}
+
+.inputContainer {
+    display: flex;
+    width: 100%;
+}
+
+.emailInput {
+    font-size: 1.2rem;
+    width: 100%;
+    background-color: rgba(var(--accent-dark-2));
+    color: rgba(var(--accent));
+    border: none;
+    padding: 0 6rem 0 1rem;
+    border-radius: 4px;
+}
+
+.agreeInput {
+    margin-left: 1rem;
+}
+
+input:focus {
+    border: none;
+    outline: 1px solid rgba(var(--accent));
+}
+
+button {
+    width: 5rem;
+    height: 3rem;
+    font-size: 1rem;
+    margin-left: -5rem;
+}
+
+.formControl {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+}
+
+.error {
+    color: red
+}
