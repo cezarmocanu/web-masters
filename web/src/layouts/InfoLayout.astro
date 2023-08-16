@@ -1,0 +1,101 @@
+---
+import Footer from "../components/molecules/Footer.astro";
+import Navbar from "../components/molecules/Navbar.astro";
+
+interface Props {
+  title?: string;
+  metaDescription?: string;
+}
+
+const DEFAULT_TITLE = "Învață gratuit dezvoltare software | Web Masters";
+const DESCRIPTION_DEFAULT =
+  "Descoperă cursuri gratuite de programare pe Web Masters: învață coding, dezvoltare web și mai mult. Alege să-ți dezvolți abilitățile în domeniul IT cu lecții interactive și resurse de calitate.";
+
+const { title, metaDescription } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta
+      name="keywords"
+      content="cursuri programare incepatori, programare, gratuit, JavaScript, web, cursuri"
+    />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={metaDescription ?? DESCRIPTION_DEFAULT} />
+    <meta property="og:title" content={title ?? DEFAULT_TITLE} />
+    <meta
+      property="og:description"
+      content={metaDescription ?? DESCRIPTION_DEFAULT}
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:url" content="https://web-masters.dev" />
+    <meta property="og:site_name" content="Web Masters" />
+    <meta property="og:image" content="https://web-masters.dev/logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <title>{title ?? DEFAULT_TITLE}</title>
+  </head>
+  <body>
+    <Navbar />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
+<style is:global>
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  :root {
+    --v: rgb(0, 54, 40);
+    --accent: 65, 255, 208;
+    --accent-light: 176, 255, 235;
+    --accent-dark: 0, 111, 83;
+    --accent-dark-2: 0, 54, 40;
+    --accent-gradient: linear-gradient(
+      45deg,
+      rgb(var(--accent)),
+      rgb(var(--accent-light)) 30%,
+      white 60%
+    );
+  }
+  html {
+    font-family: system-ui, sans-serif;
+    background: #0c1d17;
+    background-size: 224px;
+    color: white;
+  }
+
+  main {
+    padding: 2rem;
+  }
+
+  code {
+    font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
+      DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
+  }
+
+  a {
+    color: white;
+    text-decoration: none;
+  }
+
+  a:hover {
+    color: rgba(var(--accent));
+  }
+
+  h1 {
+  }
+
+  p {
+    display: block;
+    padding: 1rem 0;
+    line-height: 2rem;
+  }
+</style>
