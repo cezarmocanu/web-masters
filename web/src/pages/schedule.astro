@@ -6,24 +6,34 @@ import Footer from "../components/molecules/Footer.astro";
 import Navbar from "../components/molecules/Navbar.astro";
 import Layout from "../layouts/Layout.astro";
 
-if (Astro.request.method === "POST") {
-  try {
-    const data = await Astro.request.formData();
-    console.log(data);
-  } catch (error) {
-    if (error instanceof Error) {
-      console.error(error.stack);
-    }
-  }
-  return Astro.redirect("/");
-}
+const title = "Program cursuri | Web Masters";
 ---
 
-<Layout>
+<Layout title={title}>
   <Navbar />
   <main>
-    <Logo size={128} />
-    <h1>În curând...</h1>
+    <h1>Participă săptămânal la cursurile Web Masters</h1>
+    <div class="schedule-container">
+      <div class="schedule-card">
+        <h2>Coding Challange</h2>
+        <h3> Miercuri, 18:00 - 20:00</h3>
+        <span>
+          Află ce face programarea, descopera cum funcționează tehnologia de zi
+          cu zi în cel mai mic detaliu, și vezi cum gândește un programator în
+          timpul dezvoltarii unei aplicații web.
+        </span>
+      </div>
+      <div class="schedule-card">
+        <h2>Programare pas cu pas</h2>
+        <h3> Duminica, 18:00 - 20:00</h3>
+        <span>
+          Fie că ai mai experimentat în lucrul cu programarea, fie că ești la
+          primii pași, cursul acesta își propune să parcurgă pas cu pas toate
+          informatiile necesare în programarea web.</span
+        >
+        <span>Tehnologii: <strong>HTML</strong>, <strong>CSS</strong>, <strong>JavaScript</strong>, <strong>Git</strong>, <strong>React</strong></span>
+      </div>
+    </div>
   </main>
   <Footer />
 </Layout>
@@ -37,5 +47,27 @@ if (Astro.request.method === "POST") {
     flex-direction: column;
     align-items: center;
     gap: 2rem;
+  }
+
+  .schedule-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 64px;
+    flex-wrap: wrap;
+  }
+
+  .schedule-card {
+    min-width: 300px;
+    background: linear-gradient(
+      rgba(var(--accent-dark)),
+      rgba(var(--accent-dark-2))
+    );
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border-radius: 16px;
+    border: 1px solid rgba(var(--accent));
   }
 </style>
