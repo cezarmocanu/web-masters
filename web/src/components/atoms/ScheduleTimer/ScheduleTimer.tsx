@@ -11,6 +11,7 @@ const ScheduleTimer = () => {
   const [remainingTime, setRemainingTime] = useState<
     ReturnType<typeof getTimeLeft>
   >(getTimeLeft(nextSession.dateTime));
+
   useEffect(() => {
     const interval = setInterval(
       () => setRemainingTime(getTimeLeft(nextSession.dateTime)),
