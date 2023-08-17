@@ -3,6 +3,5 @@
 BEGIN;
 
 SELECT * FROM webmasters.users;
--- XXX Add verifications here.
 
 ROLLBACK;
