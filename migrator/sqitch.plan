@@ -4,3 +4,4 @@
 0001-create-wm-schema 2023-08-15T10:54:33Z Cezar Mocanu <root@192-168-0-8.rdsnet.ro> # Create webmasters schema
 0002-create-user-table 2023-08-15T15:17:16Z Cezar Mocanu <root@192-168-0-8.rdsnet.ro> # Create user table
 003-add-creation-date-to-user 2023-08-15T16:09:30Z Cezar Mocanu <root@192-168-0-8.rdsnet.ro> # Added creation date to user
+004-create-cours-session-table 2023-08-17T21:33:56Z Cezar Mocanu <root@192-168-0-8.rdsnet.ro> # Created courseSession table
