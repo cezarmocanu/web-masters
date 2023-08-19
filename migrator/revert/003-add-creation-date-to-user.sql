@@ -3,6 +3,6 @@
 BEGIN;
 
 ALTER TABLE webmasters.users
-DROP created_date;
+DROP COLUMN created_date;
 
 COMMIT;
