@@ -10,18 +10,22 @@ export class UserService {
     private usersRepository: Repository<User>,
   ) {}
 
-  async createUser(email: string): Promise<User> {
+  async createUser(email: string, passwordHash: string): Promise<User> {
     const user = await this.usersRepository.findOne({ where: { email } });
     if (user) {
       throw new Error(`User ${user.email} already exists`);
     }
 
-    const newUser = this.usersRepository.create({ email });
+    const newUser = this.usersRepository.create({ email, passwordHash });
     await this.usersRepository.save(newUser);
     return newUser;
   }
 
   async findAll(): Promise<User[]> {
     return await this.usersRepository.find();
+  }
+
+  async findByEmail(email: string): Promise<User> {
+    return await this.usersRepository.findOne({ where: { email } });
   }
 }
